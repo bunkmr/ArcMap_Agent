@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>AddInTester</AssemblyName>
+    <PlatformTarget>x86</PlatformTarget>
+    <Nullable>disable</Nullable>
+    <NoWarn>$(NoWarn);CS0618</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ArcObjects PIA (GAC) -->
+    <Reference Include="ESRI.ArcGIS.ADF.Local"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.ADF.Local\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.ADF.Local.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.ArcMap"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.ArcMap\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.ArcMap.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.ArcMapUI"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.ArcMapUI\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.ArcMapUI.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.Carto"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Carto\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Carto.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.CartoUI"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.CartoUI\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.CartoUI.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.DataSourcesFile"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.DataSourcesFile\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.DataSourcesFile.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.Display"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Display\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Display.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.Framework"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Framework\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Framework.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.Geodatabase"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Geodatabase\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Geodatabase.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.Geometry"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Geometry\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Geometry.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.System"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.System\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.System.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.SystemUI"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.SystemUI\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.SystemUI.dll</HintPath><Private>False</Private></Reference>
+    <Reference Include="ESRI.ArcGIS.Version"><HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Version\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Version.dll</HintPath><Private>False</Private></Reference>
+
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+</Project>

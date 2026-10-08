@@ -1,0 +1,571 @@
+{
+  "version": 1,
+  "created_at": "2026-10-08T01:06:44Z",
+  "updated_at": "2026-10-08T01:06:44Z",
+  "files": {
+    ".gitattributes": {
+      "role": "index",
+      "sha256": "21fa16a2122e2b0360b47502c577428b645437e08e9e87ffba661f84853cb476",
+      "size": 291,
+      "normalized_sha256": "21fa16a2122e2b0360b47502c577428b645437e08e9e87ffba661f84853cb476"
+    },
+    ".gitignore": {
+      "role": "index",
+      "sha256": "9de7e9d45bcbd1bd01f2a071433f9ee6846feb547e5351a246d43687299dab2e",
+      "size": 606,
+      "normalized_sha256": "9de7e9d45bcbd1bd01f2a071433f9ee6846feb547e5351a246d43687299dab2e"
+    },
+    ".workbuddy/memory/2026-09-29.md": {
+      "role": "index",
+      "sha256": "b6ee090d0700f5480a92d6263f1ab53a8d9e66972afed62d3134510ba94b9add",
+      "size": 14946,
+      "normalized_sha256": "b6ee090d0700f5480a92d6263f1ab53a8d9e66972afed62d3134510ba94b9add"
+    },
+    ".workbuddy/memory/2026-09-30.md": {
+      "role": "index",
+      "sha256": "940248ab0f089d904cc3f9202f5b2cb7803612503e1c18543b1e7db4704de5e1",
+      "size": 15791,
+      "normalized_sha256": "940248ab0f089d904cc3f9202f5b2cb7803612503e1c18543b1e7db4704de5e1"
+    },
+    ".workbuddy/memory/2026-10-01.md": {
+      "role": "index",
+      "sha256": "eaa6f969d11d57028ad75564883e2fca04241174fe29da0ac899a332812eb4b6",
+      "size": 3222,
+      "normalized_sha256": "eaa6f969d11d57028ad75564883e2fca04241174fe29da0ac899a332812eb4b6"
+    },
+    ".workbuddy/memory/2026-10-02.md": {
+      "role": "index",
+      "sha256": "ab550d9419b2ce5f453a8d932d8e591ec5f16a3cb078c13814f0e8d9f31f97b9",
+      "size": 4645,
+      "normalized_sha256": "ab550d9419b2ce5f453a8d932d8e591ec5f16a3cb078c13814f0e8d9f31f97b9"
+    },
+    "AGENTS.md": {
+      "role": "index",
+      "sha256": "ddb50101a5be7eb54bde0bdccb2ce15fbac13a0efed1b2851adc248c7a39bcb7",
+      "size": 13258,
+      "normalized_sha256": "ddb50101a5be7eb54bde0bdccb2ce15fbac13a0efed1b2851adc248c7a39bcb7"
+    },
+    "AddInTester/AddInTester.csproj": {
+      "role": "index",
+      "sha256": "78fd773754b93ca9507580e68afa88b72536d9dee93c148047e73d342cddc986",
+      "size": 3525,
+      "normalized_sha256": "78fd773754b93ca9507580e68afa88b72536d9dee93c148047e73d342cddc986"
+    },
+    "AddInTester/Program.cs": {
+      "role": "index",
+      "sha256": "fecc570b5a1450671b58b9cbd8b3f3e7c722c3741a384cc31227b4324e093220",
+      "size": 43622,
+      "normalized_sha256": "91cdb41615f1a2c4b1206d82a70061fa239a3cca9a785495e8c749b41e4dbf76"
+    },
+    "ArcMapAgent/AgentControl.cs": {
+      "role": "index",
+      "sha256": "8bbea288589d47748658c4624e14e44846fef950ac72c33568c12d21f7e2ce12",
+      "size": 20130,
+      "normalized_sha256": "8bbea288589d47748658c4624e14e44846fef950ac72c33568c12d21f7e2ce12"
+    },
+    "ArcMapAgent/AgentController.cs": {
+      "role": "index",
+      "sha256": "e59f7bb5fc2caea97f28958b78c9a313c5d0152405c0d61126dc5a0d3bc78afe",
+      "size": 52595,
+      "normalized_sha256": "e59f7bb5fc2caea97f28958b78c9a313c5d0152405c0d61126dc5a0d3bc78afe"
+    },
+    "ArcMapAgent/AgentDockableWindow.cs": {
+      "role": "index",
+      "sha256": "6b1018dd40af7d607ffec673180675aad03b83826e43072263def86ef1bab4ad",
+      "size": 1338,
+      "normalized_sha256": "6b1018dd40af7d607ffec673180675aad03b83826e43072263def86ef1bab4ad"
+    },
+    "ArcMapAgent/AgentExtension.cs": {
+      "role": "index",
+      "sha256": "37ed636cb352fc3aef91b3767c80e6e1747bd4be96b2c5f0465909e6a549c6b6",
+      "size": 5362,
+      "normalized_sha256": "37ed636cb352fc3aef91b3767c80e6e1747bd4be96b2c5f0465909e6a549c6b6"
+    },
+    "ArcMapAgent/AgentLog.cs": {
+      "role": "index",
+      "sha256": "0871975d4a84dfc9be45e391c41675b9904de73c24c97283fbb062fdf882a3da",
+      "size": 1082,
+      "normalized_sha256": "0871975d4a84dfc9be45e391c41675b9904de73c24c97283fbb062fdf882a3da"
+    },
+    "ArcMapAgent/AppConfig.cs": {
+      "role": "index",
+      "sha256": "7184763a7c13c50356ed76bb17423f139bc15e31feb6c05231f05d6cbb90df0e",
+      "size": 6738,
+      "normalized_sha256": "7184763a7c13c50356ed76bb17423f139bc15e31feb6c05231f05d6cbb90df0e"
+    },
+    "ArcMapAgent/AppContext.cs": {
+      "role": "index",
+      "sha256": "ee86f4909401000faffce6d3c41ff00a1cfa55119a1c68176c7cc8f47dbfea79",
+      "size": 519,
+      "normalized_sha256": "ee86f4909401000faffce6d3c41ff00a1cfa55119a1c68176c7cc8f47dbfea79"
+    },
+    "ArcMapAgent/ArcMapAgent.csproj": {
+      "role": "index",
+      "sha256": "a916f0ba075a3e4d352a8e6d5f74f91ee04abe05a3428c6b25b87d64fe275a64",
+      "size": 5785,
+      "normalized_sha256": "a916f0ba075a3e4d352a8e6d5f74f91ee04abe05a3428c6b25b87d64fe275a64"
+    },
+    "ArcMapAgent/ArcMapAgent.esriaddin": {
+      "role": "index",
+      "sha256": "ab9f59a8970efadc745d9913e2a38c44a182c0a63e2c35210db6ad197ff27b70",
+      "size": 108946
+    },
+    "ArcMapAgent/ArcMapTools.Extended.cs": {
+      "role": "index",
+      "sha256": "f6d7dc1ca7aece513b64ee01e175e0808388bbf8533004e3ee760ff29408e1bc",
+      "size": 66679,
+      "normalized_sha256": "f6d7dc1ca7aece513b64ee01e175e0808388bbf8533004e3ee760ff29408e1bc"
+    },
+    "ArcMapAgent/ArcMapTools.cs": {
+      "role": "index",
+      "sha256": "0a6fe055eb157129163befb7d05d4fc05b3f7bd86ea6942d3ba701e4845dbc30",
+      "size": 42926,
+      "normalized_sha256": "142ad43ec8143ffe6e39d9a8a6b4d6faec27983e134aede3504bf28b26aff206"
+    },
+    "ArcMapAgent/ChatMessage.cs": {
+      "role": "index",
+      "sha256": "232413ebb6f71e73ae8bebd75f77fba96a78f3192f3224fe6191a14ee7a2e414",
+      "size": 1250,
+      "normalized_sha256": "232413ebb6f71e73ae8bebd75f77fba96a78f3192f3224fe6191a14ee7a2e414"
+    },
+    "ArcMapAgent/ChatPanel.cs": {
+      "role": "index",
+      "sha256": "3db94f49193e56730c05c302a8bb788d5ee00ef60b4a99efbe82e12fa19863e5",
+      "size": 16302,
+      "normalized_sha256": "dd18a7145c28d69a376c6fcd2188198c2efaf159841eca2d7bf32ac867097857"
+    },
+    "ArcMapAgent/ChatTranscript.cs": {
+      "role": "index",
+      "sha256": "b8fdf444318857d8a910648b992b0c91964b3daf8f0d99dfa66e3c01808191e3",
+      "size": 13551,
+      "normalized_sha256": "b8fdf444318857d8a910648b992b0c91964b3daf8f0d99dfa66e3c01808191e3"
+    },
+    "ArcMapAgent/Config.xml": {
+      "role": "index",
+      "sha256": "ac8e7877ad56e679081184aaa1dc6835c294c09c35d37f79859a6ca4fc30846a",
+      "size": 2234,
+      "normalized_sha256": "abaa8eb12d44a41a59ac3884a714a3eeef8bcd253542fb6fdad7e6cea32fde31"
+    },
+    "ArcMapAgent/ConversationStore.cs": {
+      "role": "index",
+      "sha256": "914be182ff97a5135fabc9ec0cb2fb72b8c562950462771333a8eb32808ece62",
+      "size": 3435,
+      "normalized_sha256": "914be182ff97a5135fabc9ec0cb2fb72b8c562950462771333a8eb32808ece62"
+    },
+    "ArcMapAgent/HelpPanel.cs": {
+      "role": "index",
+      "sha256": "f45277136c2629005741a0f979ede2c1c3f23781725c690987e6d7ad3bd32efd",
+      "size": 4042,
+      "normalized_sha256": "b863391ff9dcb8b1de31825ffb3c0ad11477f50383b603bf96904c23dcc92346"
+    },
+    "ArcMapAgent/HistoryPanel.cs": {
+      "role": "index",
+      "sha256": "7d9fcbadd2d34035f83376354e1ededbbe5703168d6ef17ef1e695cce73c6368",
+      "size": 7648,
+      "normalized_sha256": "c52ba80ee15d843a7919a75fc84f9da5a95a7894d97432f354c46c08e063553f"
+    },
+    "ArcMapAgent/Images/agent32.png": {
+      "role": "index",
+      "sha256": "86f9e4c259856e75e2ded5a0044cbca8e239f9cb0cca9d004285f325dd635579",
+      "size": 2811
+    },
+    "ArcMapAgent/Images/icon.png": {
+      "role": "index",
+      "sha256": "3c13edc389d1fd657a38da6facfba7bc63af33ae347f864fb8582611a2148551",
+      "size": 7770
+    },
+    "ArcMapAgent/Images/show16.png": {
+      "role": "index",
+      "sha256": "cae1c4ba9249f948a9b92bb5fa200641ca9a94f0f0e6d887ee938d76cd7505b6",
+      "size": 901
+    },
+    "ArcMapAgent/LlmClient.cs": {
+      "role": "index",
+      "sha256": "fe7027cf73fe85896b8dfdb9029b85accf7d76297f3cef0a2bad4bac19cd1193",
+      "size": 11320,
+      "normalized_sha256": "fe7027cf73fe85896b8dfdb9029b85accf7d76297f3cef0a2bad4bac19cd1193"
+    },
+    "ArcMapAgent/MapPanel.cs": {
+      "role": "index",
+      "sha256": "d5dc027eb9c9f2e91f531597df627d3735c6a665f24b9777887bdb87d1ee00f0",
+      "size": 9336,
+      "normalized_sha256": "ea46608258425c1266d294916a7d22b792e3842d9d893d2c4b0f1d067fd005f1"
+    },
+    "ArcMapAgent/MarkdownRenderer.cs": {
+      "role": "index",
+      "sha256": "322c7505ec48e600aaa2535c07eb1a96429ad6b3e254c4dc0cefd9cf0409997e",
+      "size": 18356,
+      "normalized_sha256": "322c7505ec48e600aaa2535c07eb1a96429ad6b3e254c4dc0cefd9cf0409997e"
+    },
+    "ArcMapAgent/McpBridge.cs": {
+      "role": "index",
+      "sha256": "683817ecfb46d62c645b6b1f87b709953b852cf6dff709aedfc4fd5cd8c6c95a",
+      "size": 16942,
+      "normalized_sha256": "764d2cd756eaaf032dcaca842f5682e4e942d89ecff16e22f3bdf27d3f001d92"
+    },
+    "ArcMapAgent/McpPanel.cs": {
+      "role": "index",
+      "sha256": "1628d0fb35d17a49d29cb85b1e359d23319852a75a8a8cede306a6021bae84e3",
+      "size": 12004,
+      "normalized_sha256": "202c7361842a30c85acfc8ae81373efe4acda3bf3f17193cd42461dbe5f9976e"
+    },
+    "ArcMapAgent/ModelPanel.cs": {
+      "role": "index",
+      "sha256": "713a2a300e5662f7d2707e6168d197f46c8b4e58e053bb316ad33e47283bd2b0",
+      "size": 18106,
+      "normalized_sha256": "43b8cdfa7a420ce5ee1b85f16d816d2f115b42a7856e1b644b245b638185ac21"
+    },
+    "ArcMapAgent/NativeHelpers.cs": {
+      "role": "index",
+      "sha256": "332b9342759365ce35f1c52a6056823cd4f3c3815b66ff01f54f6e642d062a92",
+      "size": 902,
+      "normalized_sha256": "332b9342759365ce35f1c52a6056823cd4f3c3815b66ff01f54f6e642d062a92"
+    },
+    "ArcMapAgent/README_build.md": {
+      "role": "index",
+      "sha256": "36effbc59f3b8f88a5db8b1a77d80729ccd4fd5803ba55e23628cbe794d70e29",
+      "size": 30033,
+      "normalized_sha256": "c61cf5ad57b6943ea1c20e7ee266b782ba82404ea54a438d7e14a9672b5cd9f6"
+    },
+    "ArcMapAgent/ShowDockableWindowButton.cs": {
+      "role": "index",
+      "sha256": "359a2206b0fc0efff0f2a64936fb90dc29094eaa0d32370b5f8c80487b1bc362",
+      "size": 1870,
+      "normalized_sha256": "359a2206b0fc0efff0f2a64936fb90dc29094eaa0d32370b5f8c80487b1bc362"
+    },
+    "ArcMapAgent/ToolsPanel.cs": {
+      "role": "index",
+      "sha256": "de3e9230592f59237afd692c1f22ca1aac95b66462af7f2dabb6c2f3af138526",
+      "size": 3870,
+      "normalized_sha256": "92f2e25c3ac1399b7b99ee94db3ccbc7365f7c876eca4308dab19c5609d1db66"
+    },
+    "ArcMapAgent/UiControls.cs": {
+      "role": "index",
+      "sha256": "959513b5489c0052bf36a73e07df3f40912b0830bc659ca06ac0375020f0a699",
+      "size": 23084,
+      "normalized_sha256": "7bfc5764e25d7dd4de73db88a2fe9e96a1c0e6c4db7f5fa52ab177a07d037722"
+    },
+    "ArcMapAgent/UiTheme.cs": {
+      "role": "index",
+      "sha256": "5159018c603c3496c017addfdc21eba99acb338eaec798311c0114fa80095ad0",
+      "size": 9255,
+      "normalized_sha256": "5159018c603c3496c017addfdc21eba99acb338eaec798311c0114fa80095ad0"
+    },
+    "ArcMapAgent/_gen_icon.py": {
+      "role": "index",
+      "sha256": "7430046454f5ec776ee0a7968cb7c8c4342d789172bd0eb6d1bfed327bb82be7",
+      "size": 1205,
+      "normalized_sha256": "7430046454f5ec776ee0a7968cb7c8c4342d789172bd0eb6d1bfed327bb82be7"
+    },
+    "ArcMapAgent/_pack.py": {
+      "role": "index",
+      "sha256": "63e4ecbd6cdd0ffc6b6fa31772b9905ff40bc66bc8880c7357143e5528eab1e9",
+      "size": 1241,
+      "normalized_sha256": "63e4ecbd6cdd0ffc6b6fa31772b9905ff40bc66bc8880c7357143e5528eab1e9"
+    },
+    "ArcMapAgent/build.bat": {
+      "role": "index",
+      "sha256": "dae9641b059f856c2735ce5eead955bf108974686bb6568ed24aed664f1d30bc",
+      "size": 157,
+      "normalized_sha256": "dae9641b059f856c2735ce5eead955bf108974686bb6568ed24aed664f1d30bc"
+    },
+    "ArcMapAgent/pack.ps1": {
+      "role": "index",
+      "sha256": "e92db08925c89b2263fc76d1beddbefc3b0d1cdaa5daccffecb2b3de8251fbbc",
+      "size": 1009,
+      "normalized_sha256": "e92db08925c89b2263fc76d1beddbefc3b0d1cdaa5daccffecb2b3de8251fbbc"
+    },
+    "FEASIBILITY.md": {
+      "role": "index",
+      "sha256": "93e28600f798b73af43d445ec1ba94b2b7c5c53d57b61071748e5650297694ca",
+      "size": 15363,
+      "normalized_sha256": "93e28600f798b73af43d445ec1ba94b2b7c5c53d57b61071748e5650297694ca"
+    },
+    "PROJECT_OVERVIEW.md": {
+      "role": "index",
+      "sha256": "5a52371d631f61cf6b64b7d9f12f9265b4e5c9b3f8b3c6e543f8a83757305ded",
+      "size": 21982,
+      "normalized_sha256": "5a52371d631f61cf6b64b7d9f12f9265b4e5c9b3f8b3c6e543f8a83757305ded"
+    },
+    "_api_dump.txt": {
+      "role": "index",
+      "sha256": "64d67f43592f4312b76a8b2acd367c7970733e07c1108c437710f120000081da",
+      "size": 57266,
+      "normalized_sha256": "296f7a5f0446445c6e53189080ce6766bd5f39ab16f1ba49f058c48fbc3da046"
+    },
+    "_api_dump_gp.txt": {
+      "role": "index",
+      "sha256": "416049b97f2975083ea69ba9f5ac8a2d92a2d0d0a9349e9ab490d543bb216556",
+      "size": 158960,
+      "normalized_sha256": "cd44451cdb79e56278efe6130575ecae17381fd04875a7ae26dfd9c9cd60a606"
+    },
+    "_arcmap_test.png": {
+      "role": "index",
+      "sha256": "350ca7d3606d117e97b89742f059776bd85604208eae4bf295c254bb0072ceed",
+      "size": 163703
+    },
+    "_before_after_header.png": {
+      "role": "index",
+      "sha256": "092bd1c42d693ed69abac55a04e8a1901e1654d75d141b23d97b954ad7676118",
+      "size": 136264
+    },
+    "_blur2_8x.py": {
+      "role": "index",
+      "sha256": "ae4efb40b995a8c24956ce424d0e13752ab9221eb0404e002ada83c34c3f6f69",
+      "size": 1083,
+      "normalized_sha256": "ae4efb40b995a8c24956ce424d0e13752ab9221eb0404e002ada83c34c3f6f69"
+    },
+    "_blur2_flag.png": {
+      "role": "index",
+      "sha256": "3b9fb70e5bd793bd16006409a5057131a612e521b8887fdf05a84aa4c4e7e118",
+      "size": 143575
+    },
+    "_blurcap2.py": {
+      "role": "index",
+      "sha256": "e72054be8d64dbbe69cfe25141c005ce4a4856d8f4ae53e3ce09d2b7655de284",
+      "size": 6792,
+      "normalized_sha256": "6809fc2fdf1cac49a4f719fefefdf8126a428fd142894532e77fe90e7d901ff2"
+    },
+    "_blurtest2/Program.cs": {
+      "role": "index",
+      "sha256": "e5fa602152c1eb831f9f80e35af9904d83eef8dc08d7f0784c8b035a8a394e32",
+      "size": 10283,
+      "normalized_sha256": "e5fa602152c1eb831f9f80e35af9904d83eef8dc08d7f0784c8b035a8a394e32"
+    },
+    "_blurtest2/blurtest2.csproj": {
+      "role": "index",
+      "sha256": "bbbd6534c4c67d1da9715bfe28556855ca45c7402e1ced7d5370fd3f57261d4f",
+      "size": 540,
+      "normalized_sha256": "bbbd6534c4c67d1da9715bfe28556855ca45c7402e1ced7d5370fd3f57261d4f"
+    },
+    "_fix_before_after.png": {
+      "role": "index",
+      "sha256": "f44e5f67c16a04bc0354fa4cfed64cd55bb5cb3addad42150a49d00b03acc0c5",
+      "size": 84827
+    },
+    "_harness_stdout.txt": {
+      "role": "index",
+      "sha256": "5fef055196149259c930f6656026fb5469b537c91c73e5e01f986fe32bb162c4",
+      "size": 4055,
+      "normalized_sha256": "daa9cf33b3196ed9b5be288582a3dde5917af5cdf55c17e90f9fac7287ea95c5"
+    },
+    "_layout_dump.txt": {
+      "role": "index",
+      "sha256": "2b2a440c206d3b799b455e1f5d5202334a970662c43757030eeef24df5143d36",
+      "size": 217354,
+      "normalized_sha256": "db63e9df0cfcd23d28b5e8f6be4b5a47cddcf78ce2b5daf94e93dbd0d3de4f3a"
+    },
+    "_poc/_poc_model_result.txt": {
+      "role": "index",
+      "sha256": "744f185b3b9e038d35967e399251ff06b2549bd0f6ec8161898686f4da684633",
+      "size": 775,
+      "normalized_sha256": "4292418cdfea656551cb87c41e6b085ac344942136a17c4d8beb1d75e98ed061"
+    },
+    "_probe2/Program.cs": {
+      "role": "index",
+      "sha256": "6ef84b7169a4561ce28b5ee99f110f30ffed2ed874fa31780558e4769de47794",
+      "size": 12656,
+      "normalized_sha256": "f46d784d1973160e3ff2f20cd741611356ef25874c1a8cb447f534df9c3dce6c"
+    },
+    "_probe2/probe2.csproj": {
+      "role": "index",
+      "sha256": "034fc8fa5220abd9a03d300a0801364b717b00089b85c2df04ab465830efccea",
+      "size": 861,
+      "normalized_sha256": "034fc8fa5220abd9a03d300a0801364b717b00089b85c2df04ab465830efccea"
+    },
+    "_probe2_screen.png": {
+      "role": "index",
+      "sha256": "ae845b9f74052f741cce032138a98aee70e77f6e9afc6cd1557ce2f4c1276d02",
+      "size": 93064
+    },
+    "_probe2_tab0_chat.png": {
+      "role": "index",
+      "sha256": "4bb7d1a5d9f9410d5be30c4fbe48ae7b73ece0a637b8327e6c2d988996e6b825",
+      "size": 76186
+    },
+    "_probe2_tab1_history.png": {
+      "role": "index",
+      "sha256": "5b06abf61dab7ee78d5d98436451c5c51cb9b73fb46ab643a94c15d5369c91df",
+      "size": 74116
+    },
+    "_probe2_tab2_model.png": {
+      "role": "index",
+      "sha256": "4e4b43e3d00369bcf9110b3774b9b34f477a5c91551b6c620ca462ade4113597",
+      "size": 131668
+    },
+    "_probe2_tab3_mcp.png": {
+      "role": "index",
+      "sha256": "0eaf62ce1eeaae0346fde633c09c7300cc5374382ebf30fef582699c21357331",
+      "size": 134955
+    },
+    "_probe2_tab4_map.png": {
+      "role": "index",
+      "sha256": "89ae7fbdf2d0264acc1b06bc8074b9a835f5c7bded37db5fc9e9f95669fee8c5",
+      "size": 106865
+    },
+    "_probe2_tab5_tools.png": {
+      "role": "index",
+      "sha256": "a40e9e2ff146c989fa8b3bbe8bfc0f7d5c09e096c4eed461b271c2f80c209427",
+      "size": 186452
+    },
+    "_probe2_tab6_help.png": {
+      "role": "index",
+      "sha256": "60ca6649bb3f8cff3d5e009e63c1531d420fbdf67d1c891ed8234dcf7aa7d5db",
+      "size": 138959
+    },
+    "_probe3/Program.cs": {
+      "role": "index",
+      "sha256": "696d709725b8de7d1be96bcc49b2c887b6ad58430732722575d6442ae4df13d3",
+      "size": 12224,
+      "normalized_sha256": "696d709725b8de7d1be96bcc49b2c887b6ad58430732722575d6442ae4df13d3"
+    },
+    "_probe3/probe3.csproj": {
+      "role": "index",
+      "sha256": "640f944774eb002c89c8266c4a3b81f17f5d8d24741f5655f2cd0df492d5776f",
+      "size": 738,
+      "normalized_sha256": "640f944774eb002c89c8266c4a3b81f17f5d8d24741f5655f2cd0df492d5776f"
+    },
+    "_probe5/Program.cs": {
+      "role": "index",
+      "sha256": "93a3b26bd06c37f0d068cee258a8b8f228af9064c87030d38a1fddc0b4c2995d",
+      "size": 8884,
+      "normalized_sha256": "93a3b26bd06c37f0d068cee258a8b8f228af9064c87030d38a1fddc0b4c2995d"
+    },
+    "_probe5/probe5.csproj": {
+      "role": "index",
+      "sha256": "af90f1d6f39bd0b0abe5db09b27d3576922b12743530de2977a845c1c8ae3f75",
+      "size": 390,
+      "normalized_sha256": "af90f1d6f39bd0b0abe5db09b27d3576922b12743530de2977a845c1c8ae3f75"
+    },
+    "_probe6/Program.cs": {
+      "role": "index",
+      "sha256": "131814d5ee30002cdf11533f75d0042b385e048e5cdd1e06cf527d96163f4606",
+      "size": 14610,
+      "normalized_sha256": "131814d5ee30002cdf11533f75d0042b385e048e5cdd1e06cf527d96163f4606"
+    },
+    "_probe6/probe6.csproj": {
+      "role": "index",
+      "sha256": "b447265b78543a9a3ca952ac90de869315f8a1c727b6194f3ed89b082309a564",
+      "size": 2345,
+      "normalized_sha256": "b447265b78543a9a3ca952ac90de869315f8a1c727b6194f3ed89b082309a564"
+    },
+    "_ref_addin/Config.xml": {
+      "role": "index",
+      "sha256": "dc9e7b37f63320e8942e0e13b8cbf21d1bbbd5c53c7cbb540140f51846e641c5",
+      "size": 1561,
+      "normalized_sha256": "d9224ec2168be3fcf997358ee2287a5540ec06ca5412b11cedc7dfe52efa0985"
+    },
+    "_ref_addin/Images/MapCenter.png": {
+      "role": "index",
+      "sha256": "04fa708bf68c5ebee4d9161071ba400f5aa993431b8cd613470a5001fc10caf5",
+      "size": 8045
+    },
+    "_ref_addin/Images/ViewGallery16.png": {
+      "role": "index",
+      "sha256": "6d1720ee823bb9555c2e76d47c1bb346ed0c6b722d5baaf9041c6fb62a25bba4",
+      "size": 452
+    },
+    "_ref_addin/Images/ViewGalleryUser16.png": {
+      "role": "index",
+      "sha256": "699f630b479133cabd9656b5155a33b4d4895c918b7433934599ea3195d79be6",
+      "size": 705
+    },
+    "_render_chat_zoom.png": {
+      "role": "index",
+      "sha256": "8070484c3b049b5765f04835d1fffc2091c4a22c3ca5418f17cc8cb5f83c20a0",
+      "size": 291349
+    },
+    "_test_result.txt": {
+      "role": "index",
+      "sha256": "4b760a9420d0e06958647ca5dddc172cca372b186ae88276554504b6ee8f6aef",
+      "size": 4741,
+      "normalized_sha256": "4a2d745c34327437446cebeb71b1404f5a399aec1bc6c01d79895dd1bcedd68a"
+    },
+    "aoci.code.txt": {
+      "role": "index",
+      "sha256": "12cbc237b863041b3ab7b6c6330091964cb014a20e624ec1f88de6056aed56c2",
+      "size": 21,
+      "normalized_sha256": "12cbc237b863041b3ab7b6c6330091964cb014a20e624ec1f88de6056aed56c2"
+    },
+    "aoci.meta.txt": {
+      "role": "index",
+      "sha256": "fbc304fa05182547e96f1f8404c7c30ad6c366bba9589523f1019c2c1da0427c",
+      "size": 1989,
+      "normalized_sha256": "fbc304fa05182547e96f1f8404c7c30ad6c366bba9589523f1019c2c1da0427c"
+    },
+    "aoci.txt": {
+      "role": "index",
+      "sha256": "ec071796cd2004b383f24e5a78c835f00dc69e616adea0ddd9501f57d0a1551d",
+      "size": 301,
+      "normalized_sha256": "ec071796cd2004b383f24e5a78c835f00dc69e616adea0ddd9501f57d0a1551d"
+    }
+  },
+  "managed_scope": {
+    "version": "managed-scope-baseline/v1",
+    "policy_identity": "c81414aa1ad20edc6cdd8c9d904678ca476240ca1a991b5d31759dcae114efd1",
+    "observe_change_policy": "review_required",
+    "budget_policy_identity": "15e9b37a6c57e9bf03c9df3d0d049eb5b9a7f5540f9d34960408114e2538a32d",
+    "budget_policy": {
+      "version": "cognition-budget-policy/v1",
+      "mode": "enforce",
+      "whole_index": {
+        "target_tokens": 200000,
+        "warning_tokens": 300000,
+        "max_tokens": 400000
+      },
+      "r": [
+        {
+          "min_c": 1,
+          "max_c": 4,
+          "target_tokens": 25,
+          "max_tokens": 50
+        },
+        {
+          "min_c": 5,
+          "max_c": 7,
+          "target_tokens": 45,
+          "max_tokens": 90
+        },
+        {
+          "min_c": 8,
+          "max_c": 8,
+          "target_tokens": 70,
+          "max_tokens": 140
+        },
+        {
+          "min_c": 9,
+          "max_c": 9,
+          "target_tokens": 90,
+          "max_tokens": 180
+        }
+      ],
+      "s": [
+        {
+          "min_c": 1,
+          "max_c": 4,
+          "target_tokens": 20,
+          "max_tokens": 40
+        },
+        {
+          "min_c": 5,
+          "max_c": 7,
+          "target_tokens": 40,
+          "max_tokens": 80
+        },
+        {
+          "min_c": 8,
+          "max_c": 8,
+          "target_tokens": 70,
+          "max_tokens": 140
+        },
+        {
+          "min_c": 9,
+          "max_c": 9,
+          "target_tokens": 100,
+          "max_tokens": 200
+        }
+      ]
+    },
+    "apply_authorization_mode": "auto"
+  }
+}

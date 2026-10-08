@@ -1,0 +1,21 @@
+{
+  "_说明": "把下面这段贴进 Claude Desktop 的 claude_desktop_config.json，或 Cursor 的 MCP 配置里。",
+  "_前提": "ArcMap Agent 面板 → MCP 页 → 先点「启动服务」，再点「复制客户端配置」（令牌会自动带上，不用手抄）。",
+  "_端口": "默认 9876，可在 MCP 页改。只监听 127.0.0.1，局域网其他机器连不上。",
+
+  "mcpServers": {
+    "arcmap-agent": {
+      "url": "http://127.0.0.1:9876/mcp",
+      "headers": {
+        "X-Auth-Token": "<在这里填 MCP 页复制的令牌>"
+      }
+    }
+  },
+
+  "_支持的接口": {
+    "GET /health": "无鉴权，返回服务状态（用来测活）",
+    "POST /mcp": "JSON-RPC 2.0，需要令牌。支持 initialize / tools/list / tools/call / ping"
+  },
+
+  "_关于危险工具": "add_shapefile / remove_layer / save_document 这三个会改地图文档或写盘，默认不对外暴露，需要在 MCP 页显式勾选「允许特权工具」。"
+}

@@ -1,0 +1,53 @@
+# ============================================================
+# ArcMap Agent — Git 忽略规则
+#
+# 仓库只保留「源码 + 文档 + 安装包」三类内容；
+# 开发过程产物（探针、复现台、转储、截图、测试输出、工作日志）
+# 一律留在本机，不进版本控制。
+# ============================================================
+
+# ---------- .NET 构建产物 ----------
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+.vs/
+*.pdb
+*.dll
+*.cache
+
+# 打包输出：由 _pack.py 生成，发行副本见 dist/ 与 GitHub Releases
+/ArcMapAgent/*.esriaddin
+
+# ---------- 开发过程归档 / 备份 ----------
+_trash_*/
+_addin_backup/
+
+# ---------- 本地开发物：探针 / 复现台 / 第三方参考件 ----------
+/_probe*/
+/_blurtest2/
+/_poc/
+/_ref_addin/
+/_blur*.py
+
+# ---------- 本地开发物：API 转储 / 截图 / 测试输出 ----------
+/_api_dump*.txt
+/_test_result.txt
+/_harness_stdout.txt
+/_layout_dump.txt
+/_*.png
+
+# ---------- 本地工作记录（WorkBuddy 日志） ----------
+/.workbuddy/
+
+# ---------- AOCI 宿主接入配置（写入本机绝对路径，换机即失效） ----------
+.mcp.json
+.codex/config.toml
+opencode.json
+.claude/settings.json
+
+# ---------- 系统 / 同步产生的杂项 ----------
+.DS_Store
+._*
+Thumbs.db
+desktop.ini

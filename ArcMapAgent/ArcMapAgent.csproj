@@ -1,0 +1,110 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>ArcMapAgent</AssemblyName>
+    <RootNamespace>ArcMapAgent</RootNamespace>
+    <OutputType>Library</OutputType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <!-- 不部署任何 ESRI 程序集：它们在 GAC / ArcMap bin 中由运行期提供 -->
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- .NET Framework 基础引用 -->
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- ArcObjects 主互操作程序集：SDK 风格项目不会自动解析 GAC，必须显式 HintPath 指向
+         GAC_MSIL。CopyLocal=false（Private=False）表示不随 .esriaddin 发布——
+         运行期由 ArcMap 进程从 GAC 加载，避免部署 PIA 与类型标识冲突。 -->
+    <Reference Include="ESRI.ArcGIS.ADF.Local">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.ADF.Local\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.ADF.Local.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.ArcMap">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.ArcMap\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.ArcMap.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.ArcMapUI">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.ArcMapUI\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.ArcMapUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Carto">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Carto\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Carto.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.CartoUI">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.CartoUI\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.CartoUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.DataSourcesFile">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.DataSourcesFile\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.DataSourcesFile.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Display">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Display\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Display.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Framework">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Framework\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Framework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geodatabase">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Geodatabase\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Geodatabase.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- 地图导出（IExport / ExportPNGClass / ExportPDFClass / IPrintAndExport） -->
+    <Reference Include="ESRI.ArcGIS.Output">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Output\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Output.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- Geoprocessing：一次打通整个 ArcToolbox（Buffer/Clip/Intersect/CalculateField…） -->
+    <Reference Include="ESRI.ArcGIS.Geoprocessor">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Geoprocessor\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Geoprocessor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geoprocessing">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Geoprocessing\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Geoprocessing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geometry">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.Geometry\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.Geometry.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.System">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.System\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.System.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.SystemUI">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\ESRI.ArcGIS.SystemUI\v4.0_10.4.0.0__8fc3cc631e44ad86\ESRI.ArcGIS.SystemUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+
+    <!-- Add-In 框架：ArcGIS Desktop 已装在 bin 目录，运行期由 ArcMap 提供 -->
+    <Reference Include="ESRI.ArcGIS.Desktop.AddIns">
+      <HintPath>C:\Program Files (x86)\ArcGIS\Desktop10.4\bin\ESRI.ArcGIS.Desktop.AddIns.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- 清单与图标随 .esriaddin 一起打包（不编译） -->
+    <None Include="Config.xml" />
+    <None Include="Images\agent32.png" />
+    <None Include="Images\show16.png" />
+    <!-- 面板 Logo 同一张图，嵌进 DLL 供头部显示 -->
+    <EmbeddedResource Include="Images\icon.png">
+      <LogicalName>ArcMapAgent.icon.png</LogicalName>
+    </EmbeddedResource>
+    <None Include="Images\icon.png" />
+  </ItemGroup>
+
+</Project>
