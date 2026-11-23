@@ -37,6 +37,14 @@ _addin_backup/
 /_layout_dump.txt
 /_*.png
 
+# ---------- 本地开发物：临时接口抓取 / 日志 / 凭据 ----------
+/_*.json
+/_*.log
+/_*.js
+/_*.txt
+/_*_token.txt
+/_gcm*
+
 # ---------- 本地工作记录（WorkBuddy 日志） ----------
 /.workbuddy/
 

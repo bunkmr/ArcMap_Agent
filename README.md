@@ -9,7 +9,7 @@
 [![Tools](https://img.shields.io/badge/ArcObjects%20tools-37-6f42c1)]()
 [![Test](https://img.shields.io/badge/AddInTester-6%2F6%20PASS-brightgreen)]()
 
-![ArcMap Agent 面板](dist/ArcMapAgent_v0.4.3/images/screenshot-panel.png)
+![ArcMap Agent 面板](dist/ArcMapAgent_v0.4.5/images/screenshot-panel.png)
 
 ---
 
@@ -259,7 +259,7 @@ powershell -ExecutionPolicy Bypass -File pack.ps1
 
 **MCP** 页点「启动服务」→ 复制客户端配置 → 粘到支持 HTTP(streamable) 的 MCP 客户端
 （Claude Desktop / Cursor），外部 Agent 就能驱动 ArcMap。示例见
-[`dist/ArcMapAgent_v0.4.3/MCP-外部接入示例.json`](dist/ArcMapAgent_v0.4.3/MCP-外部接入示例.json)。
+[`dist/ArcMapAgent_v0.4.5/MCP-外部接入示例.json`](dist/ArcMapAgent_v0.4.5/MCP-外部接入示例.json)。
 服务只监听 `127.0.0.1` + 令牌校验；**特权工具**（添加/移除图层、保存文档）默认不暴露。
 
 ---
@@ -305,7 +305,7 @@ arcmap_agent/
 | [`PROJECT_OVERVIEW.md`](PROJECT_OVERVIEW.md) | 项目全貌：缘起 / 选型 / 能力 / 架构 / 验证证据 / 关键攻坚 / 部署 / 待办 |
 | [`FEASIBILITY.md`](FEASIBILITY.md) | 最初的可行性分析：技术选型、架构映射、风险、分阶段计划 |
 | [`ArcMapAgent/README_build.md`](ArcMapAgent/README_build.md) | 构建与安装手册：清单格式、部署、自动化验证、已知限制（**最全**） |
-| [`dist/ArcMapAgent_v0.4.3/安装说明.md`](dist/ArcMapAgent_v0.4.3/安装说明.md) | 面向最终用户的安装说明 |
+| [`dist/ArcMapAgent_v0.4.5/安装说明.md`](dist/ArcMapAgent_v0.4.5/安装说明.md) | 面向最终用户的安装说明 |
 
 ---
 
