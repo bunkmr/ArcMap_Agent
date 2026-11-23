@@ -8,9 +8,13 @@ namespace ArcMapAgent
     /// <summary>
     /// 「对话」页：一问一答的对话记录 + 输入区 + 模型/温度/跳过确认。
     ///
-    /// 自动化兼容：输入框保持**单行 TextBox**（UI Automation 的 ValuePattern 只对单行生效），
-    /// 发送按钮保持 Name=AgentSend（可 Invoke），输出容器保持 Name=AgentOutput，
-    /// 且所有输出同时写入 panel.log，供回归测试取证。
+    /// 输入框是可多行的 <see cref="ChatInputBox"/>（v0.4.4 起）：Enter 发送、Shift+Enter 换行、
+    /// 内容变多时自动长高（到 6 行封顶后出现滚动条）。用中文输入法打字时，回车用于上屏候选词，
+    /// 不会被误当成发送——见 ChatInputBox 里对 WM_IME_* 的处理。
+    ///
+    /// 自动化兼容：输入框保持 Name=AgentInput（回归测试用「真实鼠标 + 真实键盘」驱动，
+    /// 不依赖 UIA 的 ValuePattern，所以多行不影响测试），发送按钮 Name=AgentSend（可 Invoke），
+    /// 输出容器 Name=AgentOutput，且所有输出同时写入 panel.log，供回归测试取证。
     /// </summary>
     public class ChatPanel : UserControl
     {
@@ -22,7 +26,8 @@ namespace ArcMapAgent
         private Panel _outputHost;
         private ChatTranscript _transcript;
         private Panel _inputArea;
-        private TextBox _input;
+        private ChatInputBox _input;
+        private Label _placeholder;
         private FlatButton _send;
         private FlatButton _stop;
         private Panel _bottomBar;
@@ -77,15 +82,34 @@ namespace ArcMapAgent
             _outputHost.Controls.Add(_transcript);
 
             _inputArea = new Panel { BackColor = Color.White, BorderStyle = BorderStyle.FixedSingle };
-            _input = new TextBox
+            _input = new ChatInputBox
             {
                 Name = "AgentInput",
                 AccessibleName = "AgentInput",
-                BorderStyle = BorderStyle.None,
                 Font = UiTheme.Body,
+                ForeColor = UiTheme.Text,
                 BackColor = Color.White
             };
-            NativeHelpers.SetCue(_input, "输入指令…  例：/layers   或   按分公司字段给图层上色");
+
+            // 多行 EDIT 控件不支持 EM_SETCUEBANNER（只有单行才显示），所以占位提示改由一层同色
+            // Label 承担。这里**必须**用不透明白底而不是 Color.Transparent：透明背景会让 WinForms
+            // 退回 GDI+ 出字，在 ArcMap 的 GDIDPISCALING 环境下必然发糊（v0.4.3 查过的同一个坑）。
+            _placeholder = new Label
+            {
+                Name = "AgentPlaceholder",
+                Text = "输入指令…  例：/layers   或   按分公司字段给图层上色",
+                Font = UiTheme.Body,
+                ForeColor = UiTheme.TextSub,
+                BackColor = Color.White,
+                AutoSize = false,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Cursor = Cursors.IBeam
+            };
+            _placeholder.Click += (s, e) =>
+            {
+                _input.Focus();
+                _input.SelectionStart = _input.TextLength;
+            };
             _send = new FlatButton("发送", BtnStyle.Primary) { Name = "AgentSend", AccessibleName = "AgentSend", Width = UiTheme.S(62), Height = UiTheme.S(30) };
             _stop = new FlatButton("停止", BtnStyle.Danger) { Width = UiTheme.S(62), Height = UiTheme.S(30), Visible = false };
             _send.CaptionFont = UiTheme.BodyBold;
@@ -118,12 +142,22 @@ namespace ArcMapAgent
             _stop.Click += (s, e) => { _shell.Controller.Stop(); SetBusy(false); _shell.SetStatus("已请求停止"); };
             _input.KeyDown += (s, e) =>
             {
-                if (e.KeyCode == Keys.Enter && !e.Shift)
-                {
-                    e.SuppressKeyPress = true;
-                    Send();
-                }
+                if (e.KeyCode != Keys.Enter) return;
+
+                // 中文输入法组字期间，回车是「上屏候选词」，绝不能当成发送。
+                // 否则用户打拼音按回车选字时，会把半截话发出去（这是多行改造最容易踩的坑）。
+                if (_input.IsImeComposing) return;
+
+                // Shift+Enter 走原生换行（ChatInputBox.AcceptsReturn = true），这里不拦。
+                if (e.Shift) return;
+
+                // 其余情况（Enter / Ctrl+Enter）都是发送；SuppressKeyPress 同时消掉换行与提示音。
+                e.SuppressKeyPress = true;
+                Send();
             };
+            _input.TextChanged += (s, e) => { AutoGrowInput(); UpdatePlaceholder(); };
+            _input.GotFocus += (s, e) => UpdatePlaceholder();
+            _input.LostFocus += (s, e) => UpdatePlaceholder();
             _model.SelectedIndexChanged += (s, e) =>
             {
                 if (_suppressModelEvent) return;
@@ -151,6 +185,8 @@ namespace ArcMapAgent
             _inputArea.Controls.Add(_input);
             _inputArea.Controls.Add(_send);
             _inputArea.Controls.Add(_stop);
+            _inputArea.Controls.Add(_placeholder);
+            _placeholder.BringToFront();   // 占位提示要压在输入框之上才看得见
 
             _bottomBar.Controls.Add(lblModel);
             _bottomBar.Controls.Add(_model);
@@ -166,8 +202,10 @@ namespace ArcMapAgent
             Controls.Add(_inputArea);
             Controls.Add(_bottomBar);
 
-            Resize += (s, e) => LayoutChildren();
+            Resize += (s, e) => { AutoGrowInput(); LayoutChildren(); };
             _ready = true;
+            AutoGrowInput();        // 先按内容定高，再统一排版
+            UpdatePlaceholder();
             LayoutChildren();
         }
 
@@ -245,8 +283,14 @@ namespace ArcMapAgent
             _inputArea.SetBounds(pad, inputTop, innerW, inputH);
             _send.SetBounds(_inputArea.Width - UiTheme.S(70), Math.Max(0, (_inputArea.Height - _send.Height) / 2), UiTheme.S(64), _send.Height);
             _stop.SetBounds(_inputArea.Width - UiTheme.S(70), Math.Max(0, (_inputArea.Height - _stop.Height) / 2), UiTheme.S(64), _stop.Height);
-            _input.SetBounds(UiTheme.S(8), (_inputArea.Height - _input.Height) / 2,
+            _input.SetBounds(UiTheme.S(8), Math.Max(0, (_inputArea.Height - _input.Height) / 2),
                              Math.Max(UiTheme.S(40), _inputArea.Width - UiTheme.S(84)), _input.Height);
+
+            // 占位提示贴在输入框第一行的左上角（多行 EDIT 的首行文字就从这里开始）
+            _placeholder.SetBounds(_input.Left + UiTheme.S(1),
+                                   _input.Top + UiTheme.S(1),
+                                   Math.Max(UiTheme.S(20), _input.Width - UiTheme.S(2)),
+                                   Math.Max(UiTheme.S(16), _input.Font.Height));
 
             int trTop = chipsTop + chipsH + gap;
             int trH = inputTop - gap - trTop;
@@ -358,11 +402,58 @@ namespace ArcMapAgent
             finally { _suppressModelEvent = false; }
         }
 
+        /// <summary>
+        /// 按内容行数调整输入框高度：空的时候一行，最多 6 行，再高就出滚动条。
+        /// 同时受面板高度约束（不超过 1/3），避免把上方的对话记录挤没。
+        ///
+        /// 行数用 EDIT 自己的 `EM_GETLINECOUNT`（含 WordWrap 折行），不再用
+        /// `GetLineFromCharIndex(TextLength)`——后者在末尾越界索引上会少算一行，
+        /// 粘贴长文本时会「明明三行、高度只长一行」。
+        /// </summary>
+        private void AutoGrowInput()
+        {
+            if (!_ready) return;
+
+            int lineH = Math.Max(UiTheme.S(14), _input.Font.Height);
+            int lines = _input.DisplayLineCount;
+
+            int minH = lineH + UiTheme.S(8);
+            int byLines = minH + 5 * lineH;                       // 1 行 + 再加 5 行 = 6 行封顶
+            int byPanel = Math.Max(minH + lineH, ClientSize.Height / 3);
+            int maxH = Math.Min(byLines, byPanel);
+
+            int want = Math.Max(minH, Math.Min(maxH, lines * lineH + UiTheme.S(8)));
+
+            // 到达上限才给滚动条，否则会出现「只有一行却顶着个滚动条」的怪样子。
+            // 走 ApplyScrollBars：它会重建句柄，必须把光标/滚动位置接回去。
+            ScrollBars bars = want >= maxH ? ScrollBars.Vertical : ScrollBars.None;
+            _input.ApplyScrollBars(bars);
+
+            if (_input.Height != want)
+            {
+                _input.Height = want;
+                LayoutChildren();
+            }
+        }
+
+        /// <summary>
+        /// 占位提示只在「没有焦点、也没有内容」时显示。光标一进来就藏起来，
+        /// 免得闪烁的光标压在提示文字上。
+        /// </summary>
+        private void UpdatePlaceholder()
+        {
+            if (_placeholder == null) return;
+            bool show = _input.TextLength == 0 && !_input.Focused;
+            if (_placeholder.Visible != show) _placeholder.Visible = show;
+        }
+
         private void Send()
         {
             string text = _input.Text;
             if (string.IsNullOrWhiteSpace(text)) return;
             _input.Text = "";
+            AutoGrowInput();        // 清空后立刻缩回一行
+            _input.Focus();
             var a = _shell.Config.Active;
             _shell.SetStatus("正在与模型交互…（" + a.Model + "）");
             SetBusy(true);

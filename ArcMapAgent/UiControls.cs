@@ -525,4 +525,169 @@ namespace ArcMapAgent
             };
         }
     }
+
+    /// <summary>
+    /// 对话输入框：**多行**、可自动长高、并且能识别输入法组字状态。
+    ///
+    /// 为什么要单独做一个类（v0.4.4，对应用户「不能在对话窗口用多行文本编辑和发送」）：
+    ///
+    /// 1) `Multiline` 是 TextBox 的初始化属性，一旦句柄建立就不能再改，所以必须从一开始就是多行；
+    ///    用普通 TextBox 时按 Shift+Enter 是「什么都不发生」——单行 EDIT 控件压根不存 `\r\n`。
+    ///
+    /// 2) **中文输入法的回车歧义**。用拼音/五笔打字时，回车是「上屏候选词」，
+    ///    不是「发送消息」。单靠 KeyDown 判断 `Keys.Enter` 会在用户选字时把半截话发出去。
+    ///    这里挂 `WM_IME_STARTCOMPOSITION` / `WM_IME_ENDCOMPOSITION` 维护一个组字标志，
+    ///    调用方据此区分「上屏」和「发送」。这两个消息是 IME 自己发的，比自己猜
+    ///    `ImeMode` 或看候选窗口位置可靠得多。
+    ///
+    /// 3) **换行符必须归一化（v0.4.5）**。Web EDIT 控件只把 `\r\n` 当换行；文本里若是
+    ///    单独的 `\n`（网页、微信、各种编辑器复制出来的常见形态）或老式 `\r`，
+    ///    EDIT 会把它当普通字符——整段挤成「一行」自动折行。此时光标在末尾，
+    ///    视口自动滚到最后，用户看到的就是「粘贴了多行，只显示最后一行」。
+    ///    所以 <see cref="Text"/> 取值时归一化，`WM_PASTE` 也单独接管。
+    ///
+    /// 注意：不要在句柄建立后再改 `ScrollBars`——WinForms 会 RecreateHandle，
+    /// 光标和滚动位置一起归零（实测 SelectionStart 63 → 0）。本类只在高度到上限时
+    /// 切 Vertical，切完立刻把光标/滚动位置恢复回去。
+    /// </summary>
+    public class ChatInputBox : TextBox
+    {
+        private const int WM_IME_STARTCOMPOSITION = 0x010D;
+        private const int WM_IME_ENDCOMPOSITION = 0x010E;
+        private const int WM_IME_COMPOSITION = 0x010F;
+        private const int WM_PASTE = 0x0302;
+        private const int EM_GETLINECOUNT = 0x00BA;
+        private const int EM_GETFIRSTVISIBLELINE = 0x00CE;
+        private const int EM_LINESCROLL = 0x00B6;
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
+
+        private bool _imeComposing;
+
+        /// <summary>输入法正在组字（此时回车应当是「上屏」而不是「发送」）。</summary>
+        public bool IsImeComposing { get { return _imeComposing; } }
+
+        /// <summary>
+        /// 屏幕上的实际行数（含 WordWrap 折出来的行）。比自己数 `\r\n` 可靠：
+        /// 一是有折行，二是 `GetLineFromCharIndex(TextLength)` 在越界索引上会少算一行。
+        /// </summary>
+        public int DisplayLineCount
+        {
+            get
+            {
+                if (!IsHandleCreated) return 1;
+                int n = (int)SendMessage(Handle, EM_GETLINECOUNT, IntPtr.Zero, IntPtr.Zero);
+                return Math.Max(1, n);
+            }
+        }
+
+        /// <summary>`\r\n` / `\r` / `\n` 统一成 Windows EDIT 认的 `\r\n`。</summary>
+        public static string NormalizeNewlines(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return s ?? "";
+            if (s.IndexOf('\r') < 0 && s.IndexOf('\n') < 0) return s;
+            var sb = new System.Text.StringBuilder(s.Length + 8);
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if (c == '\r')
+                {
+                    sb.Append("\r\n");
+                    if (i + 1 < s.Length && s[i + 1] == '\n') i++;
+                }
+                else if (c == '\n') sb.Append("\r\n");
+                else sb.Append(c);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 程序赋值也走归一化（历史回填、快捷指令等）。粘贴不走这里——它走 EM_REPLACESEL，
+        /// 所以另有 WM_PASTE 分支。
+        /// </summary>
+        public override string Text
+        {
+            get { return base.Text; }
+            set { base.Text = NormalizeNewlines(value); }
+        }
+
+        public ChatInputBox()
+        {
+            Multiline = true;
+            AcceptsReturn = true;          // 回车插入换行由原生处理；发送键在 KeyDown 里 Suppress
+            WordWrap = true;
+            ScrollBars = ScrollBars.None;
+            BorderStyle = BorderStyle.None;
+        }
+
+        /// <summary>
+        /// 切换滚动条。WinForms 的 `ScrollBars` setter 会 RecreateHandle，
+        /// 光标、选区、滚动位置全归零，这里手动恢复。
+        /// </summary>
+        public void ApplyScrollBars(ScrollBars bars)
+        {
+            if (ScrollBars == bars) return;
+            if (!IsHandleCreated) { ScrollBars = bars; return; }
+
+            int sel = SelectionStart;
+            int firstVisible = (int)SendMessage(Handle, EM_GETFIRSTVISIBLELINE, IntPtr.Zero, IntPtr.Zero);
+
+            ScrollBars = bars;              // 这里重建句柄
+
+            try
+            {
+                SelectionStart = Math.Min(sel, TextLength);
+                SelectionLength = 0;
+                int now = (int)SendMessage(Handle, EM_GETFIRSTVISIBLELINE, IntPtr.Zero, IntPtr.Zero);
+                if (now != firstVisible)
+                    SendMessage(Handle, EM_LINESCROLL, IntPtr.Zero, (IntPtr)(firstVisible - now));
+            }
+            catch { }
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case WM_IME_STARTCOMPOSITION:
+                    _imeComposing = true;
+                    break;
+                case WM_IME_ENDCOMPOSITION:
+                    _imeComposing = false;
+                    break;
+                case WM_IME_COMPOSITION:
+                    // 最后一次组字结束会带 GCS_RESULTSTR（0x0800），此时可以认为已经上屏完
+                    if (((int)m.LParam & 0x0800) != 0) _imeComposing = false;
+                    break;
+                case WM_PASTE:
+                    // 自己接管粘贴：只为了把换行归一化。失败就交给原生，不阻断粘贴本身。
+                    if (PasteNormalized()) return;
+                    break;
+            }
+            base.WndProc(ref m);
+        }
+
+        /// <summary>
+        /// 归一化粘贴。用 `SelectedText` 赋值（内部走 EM_REPLACESEL）而不是 `Paste()`，
+        /// 免得又绕回 WM_PASTE 死循环。
+        /// </summary>
+        private bool PasteNormalized()
+        {
+            try
+            {
+                if (!Clipboard.ContainsText()) return false;
+                string raw = Clipboard.GetText();
+                if (string.IsNullOrEmpty(raw)) return false;
+
+                string norm = NormalizeNewlines(raw);
+                SelectedText = norm;        // 有选区就替换，光标落到插入内容之后
+                return true;
+            }
+            catch
+            {
+                return false;               // 剪贴板被别的进程占着等异常，退回原生粘贴
+            }
+        }
+    }
 }

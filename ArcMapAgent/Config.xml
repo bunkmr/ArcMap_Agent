@@ -3,7 +3,7 @@
   <Name>ArcMap Agent</Name>
   <AddInID>{6F3A9C52-8B14-4E2D-9A7B-1D5C0E4F83A6}</AddInID>
   <Description>自然语言操控 ArcMap 的 AI 助手（C# .NET Add-In）</Description>
-  <Version>0.4.3</Version>
+  <Version>0.4.5</Version>
   <Image>Images\agent32.png</Image>
   <Author>bunkr</Author>
   <Company>ArcMapAgent</Company>

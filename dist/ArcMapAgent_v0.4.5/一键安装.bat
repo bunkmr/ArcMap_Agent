@@ -1,11 +1,11 @@
 @echo off
 chcp 936 >nul
 setlocal enabledelayedexpansion
-title ArcMap Agent v0.4.3 安装程序
+title ArcMap Agent v0.4.5 安装程序
 
 echo.
 echo  ============================================================
-echo    ArcMap Agent v0.4.3  安装程序
+echo    ArcMap Agent v0.4.5  安装程序
 echo  ============================================================
 echo.
 

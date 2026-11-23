@@ -34,7 +34,7 @@ namespace ArcMapAgent
         private Func<string, Dictionary<string, object>, string> _invoke;
         private Func<List<ToolDef>> _toolsProvider;
 
-        public const string Version = "0.4.3";
+        public const string Version = "0.4.5";
 
         /// <summary>危险工具：会改变地图文档或写盘，默认不对外暴露。</summary>
         private static readonly HashSet<string> Dangerous = new HashSet<string>(StringComparer.OrdinalIgnoreCase)

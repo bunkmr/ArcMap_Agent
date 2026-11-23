@@ -146,6 +146,24 @@ _lblSub  .SetBounds(left, top + titleH + _lineGap, titleW, subH);
 另外 `AgentControl` 显式设置 `AutoScaleMode = AutoScaleMode.None`：`UserControl` 默认
 `Inherit`，被 ArcMap 停靠容器按宿主字体做一次比例换算时，子控件会落到半像素上。
 
+### 对话输入框（v0.4.4 / v0.4.5）
+
+`ChatInputBox : TextBox`（`UiControls.cs`）——多行 + 自动长高 + 输入法组字识别。
+
+- **换行符必须归一化（v0.4.5）**：Windows EDIT 只认 `\r\n`。网页 / 微信 / 多数编辑器复制出来的
+  纯文本是单独的 `\n`（老式 `\r` 同理），EDIT 当普通字符处理 → `EM_GETLINECOUNT` 返回 1 →
+  高度只按一行分配 → 光标在末尾、视口滚到底 → **用户看到"粘贴了多行只显示最后一行"**。
+  现在 `Text` setter 与 `WM_PASTE` 都走 `NormalizeNewlines()`（粘贴用 `SelectedText` 落文本，
+  避免又绕回 `WM_PASTE` 死循环）。程序赋值也覆盖了，历史回填、快捷指令同样安全。
+- **行数用 `EM_GETLINECOUNT`**，不用 `GetLineFromCharIndex(TextLength)`：后者在末尾越界索引上
+  会少算一行（探针实测 `EM=2` 而 `GetLineFromCharIndex=1`），粘贴长文本时高度长不起来。
+- **切 `ScrollBars` 会 `RecreateHandle`**：光标、选区、滚动位置一起归零（实测 SelStart 87 → 0）。
+  所以统一走 `ApplyScrollBars()`，切完把 `SelectionStart` 和 `EM_GETFIRSTVISIBLELINE` 接回去。
+- 多行 EDIT 不支持 `EM_SETCUEBANNER`，占位文字由同色 Label 覆盖（**必须不透明白底**，
+  透明背景会退回 GDI+ 出字，在 ArcMap 的 DPI 兼容环境下必糊）。
+- 中文输入法回车：挂 `WM_IME_STARTCOMPOSITION` / `WM_IME_ENDCOMPOSITION` 维护组字标志，
+  `IsImeComposing` 为真时回车是"上屏"不是"发送"。
+
 ### 对话渲染（v0.4.0）
 `ChatTranscript : RichTextBox` 负责气泡；`MarkdownRenderer` 负责把模型输出渲染成富文本。
 
